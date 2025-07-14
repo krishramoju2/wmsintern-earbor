@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware # <<< ADDED THIS IMPORT
 from sqlalchemy.orm import Session
 from . import crud, models, schemas
 from .database import SessionLocal, engine, get_db
@@ -14,7 +15,29 @@ app = FastAPI(
     description="Manage employee data, trucker profiles, and critical logistics documents efficiently."
 )
 
+# <<< ADDED CORS CONFIGURATION HERE
+# CORS Configuration
+# IMPORTANT: Replace "https://YOUR_VERCEL_DOMAIN.vercel.app" with your actual Vercel domain!
+# For example, if your Vercel URL is https://wmsintern-earbor.vercel.app, use that.
+origins = [
+    "http://localhost:3000",  # Your React development server for local testing
+    "http://127.0.0.1:3000",  # Another common local React development address
+    "https://YOUR_VERCEL_DOMAIN.vercel.app", # Your actual Vercel frontend domain
+    "https://YOUR_VERCEL_DOMAIN.vercel.app/api" # Often beneficial to include this too
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,       # Specifies allowed origins
+    allow_credentials=True,      # Allows cookies to be sent
+    allow_methods=["*"],         # Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
+    allow_headers=["*"],         # Allows all headers (e.g., Content-Type, Authorization)
+)
+# >>> END CORS CONFIGURATION
+
 # Placeholder for file storage. In a real app, use cloud storage like AWS S3 or Google Cloud Storage.
+# NOTE: This local storage method is NOT suitable for Vercel's ephemeral serverless environment.
+# You will need to integrate with a cloud storage service for production file uploads.
 UPLOAD_DIRECTORY = "uploaded_documents"
 os.makedirs(UPLOAD_DIRECTORY, exist_ok=True)
 
@@ -54,6 +77,8 @@ async def upload_document(
 
     # Save the file to a local directory (for demonstration)
     # In production, use cloud storage (e.g., AWS S3, Google Cloud Storage) and store the URL.
+    # THIS PART WILL NOT WORK ON VERCEL AS THE FILESYSTEM IS EPHEMERAL.
+    # YOU NEED TO CHANGE THIS TO UPLOAD TO A CLOUD STORAGE SERVICE.
     file_location = os.path.join(UPLOAD_DIRECTORY, f"{employee_id}_{document_type}_{file.filename}")
     with open(file_location, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
