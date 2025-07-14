@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv() # Load environment variables from .env file
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
+SECRET_KEY = os.getenv("SECRET_KEY") # This line loads it into a variable
 # For local development with SQLite (optional, but good for quick starts)
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # engine = create_engine(
