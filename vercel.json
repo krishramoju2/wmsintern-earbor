@@ -23,6 +23,6 @@
     }
   ],
   "env": {
-    "DATABASE_URL": "@database_url"
+    "DATABASE_URL": "#postgresql://postgres:[YOUR-PASSWORD]@db.vvtdaxujkincslvyovzf.supabase.co:5432/postgres"
   }
 }
