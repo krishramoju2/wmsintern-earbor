@@ -17,12 +17,12 @@ app = FastAPI(
 
 # <<< ADDED CORS CONFIGURATION HERE
 # CORS Configuration
-# IMPORTANT: Replace "https://YOUR_VERCEL_DOMAIN.vercel.app" with your actual Vercel domain!
+# IMPORTANT: Replace "wmsintern-earbor-8xl2.vercel.app" with your actual Vercel domain!
 # For example, if your Vercel URL is https://wmsintern-earbor.vercel.app, use that.
 origins = [
     "http://localhost:3000",  # Your React development server for local testing
     "http://127.0.0.1:3000",  # Another common local React development address
-    "https://YOUR_VERCEL_DOMAIN.vercel.app" # Your actual Vercel frontend domain
+    "https://wmsintern-earbor-8xl2.vercel.app" # Your actual Vercel frontend domain
     
 ]
 
