@@ -23,6 +23,7 @@
     }
   ],
   "env": {
-    "DATABASE_URL": "#postgresql://postgres:[YOUR-PASSWORD]@db.vvtdaxujkincslvyovzf.supabase.co:5432/postgres"
+    "DATABASE_URL": "#postgresql://postgres:[YOUR-PASSWORD]@db.vvtdaxujkincslvyovzf.supabase.co:5432/postgres",
+    "SECRET_KEY": "$db53212d35e5b071c914bf3190a6f7a61f9c893b2d2e56250dcb252384dea3b0"
   }
 }
