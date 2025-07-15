@@ -22,8 +22,8 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",  # Your React development server for local testing
     "http://127.0.0.1:3000",  # Another common local React development address
-    "https://YOUR_VERCEL_DOMAIN.vercel.app", # Your actual Vercel frontend domain
-    "https://YOUR_VERCEL_DOMAIN.vercel.app/api" # Often beneficial to include this too
+    "https://YOUR_VERCEL_DOMAIN.vercel.app" # Your actual Vercel frontend domain
+    
 ]
 
 app.add_middleware(
